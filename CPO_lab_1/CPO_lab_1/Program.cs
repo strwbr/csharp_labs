@@ -26,23 +26,43 @@ namespace CPO_lab_1
                 y[i] = Convert.ToInt32(Console.ReadLine());
             }
 
-            Console.WriteLine("/n You've entered:");
-            for (i = 0; i < n; i++)
-            {
-                Console.WriteLine("x[{0}] = {1}     | y[{0}] = {2}", i + 1, x[i], y[i]);
-            }
+            //Console.WriteLine("/n You've entered:");
+            //for (i = 0; i < n; i++)
+            //{
+            //    Console.WriteLine("x[{0}] = {1}     | y[{0}] = {2}", i + 1, x[i], y[i]);
+            //}
+
+            WriteTable(x, y);
 
             // НЕ УДАЛЯТЬ, ИНАЧЕ КОНСОЛЬ ЗАКРЫВАЕТСЯ
             Console.ReadKey(true);
         }
 
-        static void WriteTable(float[] x, float[] y, float min, float max, float mean)
+        static void WriteTable(float[] x, float[] y)
         {
-            Console.WriteLine("")
-            for(int i = 0; i < x.Length; i++)
+            Console.WriteLine("");
+            Console.WriteLine("_____________________________________");
+            Console.WriteLine("{0, 10}    |{1, 10}", "x", "y");
+            Console.WriteLine("_____________________________________");
+            for (int i = 0; i < x.Length; i++)
             {
-
+                Console.WriteLine("{0, 10}    |{1, 10}", x[i], y[i]);
             }
+            Console.WriteLine("_____________________________________");
+            Console.WriteLine("");
+            Console.WriteLine("________________________________________________________");
+            float xmin = Min(x);
+            float ymin = Min(y);
+            float xmax = Max(x);
+            float ymax = Max(y);
+            float xmean = Mean(x);
+            float ymean = Mean(y);
+            Console.WriteLine("{0, 10}    |{1, 10}    |{2, 10}", "", "x", "y");
+            Console.WriteLine("________________________________________________________");
+            Console.WriteLine("{0, 10}    |{1, 10}    |{2, 10}", "min", xmin, ymin);
+            Console.WriteLine("{0, 10}    |{1, 10}    |{2, 10}", "max", xmax, ymax);
+            Console.WriteLine("{0, 10}    |{1, 10}    |{2, 10}", "mean", xmean, ymean);
+            Console.WriteLine("________________________________________________________");
         }
 
         static float Min(float[] array)
