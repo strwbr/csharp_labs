@@ -1,0 +1,8 @@
+C:\Users\boris\CodeProjects\CSharpCode\csharp_labs\CPO_lab_2\CPO_lab_2\bin\Debug\CPO_lab_2.exe.config
+C:\Users\boris\CodeProjects\CSharpCode\csharp_labs\CPO_lab_2\CPO_lab_2\bin\Debug\CPO_lab_2.exe
+C:\Users\boris\CodeProjects\CSharpCode\csharp_labs\CPO_lab_2\CPO_lab_2\bin\Debug\CPO_lab_2.pdb
+C:\Users\boris\CodeProjects\CSharpCode\csharp_labs\CPO_lab_2\CPO_lab_2\obj\Debug\CPO_lab_2.csproj.AssemblyReference.cache
+C:\Users\boris\CodeProjects\CSharpCode\csharp_labs\CPO_lab_2\CPO_lab_2\obj\Debug\CPO_lab_2.csproj.SuggestedBindingRedirects.cache
+C:\Users\boris\CodeProjects\CSharpCode\csharp_labs\CPO_lab_2\CPO_lab_2\obj\Debug\CPO_lab_2.csproj.CoreCompileInputs.cache
+C:\Users\boris\CodeProjects\CSharpCode\csharp_labs\CPO_lab_2\CPO_lab_2\obj\Debug\CPO_lab_2.exe
+C:\Users\boris\CodeProjects\CSharpCode\csharp_labs\CPO_lab_2\CPO_lab_2\obj\Debug\CPO_lab_2.pdb
