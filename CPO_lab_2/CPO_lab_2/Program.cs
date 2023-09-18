@@ -11,71 +11,103 @@ namespace CPO_lab_2
     {
         static void Main(string[] args)
         {
-            //Menu();
-
+            Stationery stationery = null;
             string path = "data/data.txt";
-            //StreamWriter writer = new StreamWriter(path, false);
-            //writer.WriteLine("test data");
-            //writer.Close();
 
-            //StreamReader reader = new StreamReader(path);
-            //string data = reader.ReadToEnd();
-            //Console.WriteLine(data);
-            //reader.Close();
-
-            Stationery stationery = new Stationery("type1", "company1", 100.0f);
-
-            StreamWriter writer = new StreamWriter(path, true);
-            stationery.WriteToFile(writer);
-            stationery.WriteToFile(writer);
-            writer.Close();
-
-            StreamReader reader = new StreamReader(path);
-            Stationery stationery1 = new Stationery();
-            stationery1.ReadFromFile(reader);
-            reader.Close();
-
-
-
-            Console.WriteLine("------OK!------");
-            Console.ReadKey(true);
-        }
-
-        static void Menu()
-        {
-            sbyte command = -1; // sbyte = [-128;127], 1 байт
-            while (command == -1)
+            bool flag = true;
+            while (flag)
             {
+                Console.Clear();
+
                 Console.WriteLine("Меню");
-                Console.WriteLine("----------------");
-                Console.WriteLine("1 - ...");
-                Console.WriteLine("2 - ...");
-                Console.WriteLine("3 - ...");
+                Console.WriteLine("----------------------------");
+                Console.WriteLine("1 - Ввести данные");
+                Console.WriteLine("2 - Сохранить данные в файл");
+                Console.WriteLine("3 - Считать данные из файла");
                 Console.WriteLine("0 - Выход");
-                command = SByte.Parse(Console.ReadLine());
+                Console.WriteLine("----------------------------");
+                Console.Write("Введите команду: ");
+                sbyte command = SByte.Parse(Console.ReadLine()); // sbyte = [-128;127], 1 байт
+
+                //Console.Clear();
+                Console.WriteLine("\n************************************\n");
 
                 switch (command)
                 {
                     case 0:
                         Console.WriteLine("Закрытие...");
+                        flag = false;
                         break;
                     case 1:
-                        Console.WriteLine("Вы выбрали раздел 1");
+                        stationery = InputData();
+                        Console.WriteLine("\nДля продолжения нажмите любую клавишу...");
+                        Console.ReadKey(true);
                         break;
                     case 2:
-                        Console.WriteLine("Вы выбрали раздел 2");
+                        SaveToFile(stationery, path);
+                        Console.WriteLine("\nДля продолжения нажмите любую клавишу...");
+                        Console.ReadKey(true);
                         break;
                     case 3:
-                        Console.WriteLine("Вы выбрали раздел 3");
+                        LoadFromFile(path);
+                        Console.WriteLine("\nДля продолжения нажмите любую клавишу...");
+                        Console.ReadKey(true);
                         break;
                     default:
                         Console.WriteLine("Ошибочная команда. Повторите ввод");
-                        command = -1;
+                        Console.WriteLine("\nДля продолжения нажмите любую клавишу...");
+                        Console.ReadKey(true);
                         break;
                 }
             }
         }
 
+        static Stationery InputData()
+        {
+            Stationery stationery = new Stationery();
 
+            Console.Write("Тип: ");
+            stationery.Type = Console.ReadLine();
+
+            Console.Write("Фирма-производитель: ");
+            stationery.Company = Console.ReadLine();
+
+            Console.Write("Цена: ");
+            stationery.Price = float.Parse(Console.ReadLine());
+
+            return stationery;
+        }
+
+        static void SaveToFile(Stationery stationery, string path)
+        {
+            if (stationery != null)
+            {
+                StreamWriter writer = new StreamWriter(path, true);
+                stationery.WriteToFile(writer);
+                writer.Close();
+                Console.WriteLine("Данные добавлены в файл");
+            } else
+            {
+                Console.WriteLine("Данные пустые");
+            }
+        }
+
+        static void LoadFromFile(string path)
+        {
+            Console.WriteLine("-------------------------------------------------------------------------");
+            Console.WriteLine("{0, 20}    |{1, 30}    |{2, 10}", "Тип", "Фирма-производитель", "Цена");
+            Console.WriteLine("-------------------------------------------------------------------------");
+
+            StreamReader reader = new StreamReader(path);
+            while (!reader.EndOfStream)
+            {
+                Stationery stationery = new Stationery();
+                stationery.ReadFromFile(reader);
+                Console.WriteLine(stationery);
+                Console.WriteLine("-------------------------------------------------------------------------");
+            }
+
+            reader.Close();
+        }
     }
 }

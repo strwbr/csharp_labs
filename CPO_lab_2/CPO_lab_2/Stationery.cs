@@ -45,7 +45,8 @@ namespace CPO_lab_2
         // Отрефакторить для табличного вывода
         public override string ToString()
         {
-            return Type + " " + Company + " " + Price.ToString();
+            return String.Format("{0, 20}    |{1, 30}    |{2, 10}", Type, Company, Price);
+            //return Type + " " + Company + " " + Price.ToString();
         }
     }
 }
