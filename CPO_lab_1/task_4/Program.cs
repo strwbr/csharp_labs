@@ -1,56 +1,64 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
+/* Программа, которая на заданном отрезке 
+выполняет поиск одного из корней полинома
+методом деления отрезка пополам.
+Границы отрезка вводяться с клавиатуры.*/
 namespace task_4
 {
     internal class Program
     {
         static void Main(string[] args)
         {
+            // Границы отрезка
             float a = -1f, b = -1f;
-            bool flag = true;
-            while (flag)
+            // Ввод границ отрезка
+            bool isWrongInput = true;
+            while (isWrongInput)
             {
-                Console.WriteLine("Введите диапазон [a, b]:");
+                Console.WriteLine("Введите границы отрезка [a, b]:");
                 Console.Write("a = ");
                 a = float.Parse(Console.ReadLine());
 
                 Console.Write("b = ");
                 b = float.Parse(Console.ReadLine());
 
-                flag = a > b;
-                if (flag)
+                // Проверка на правильность ввода
+                isWrongInput = a > b;
+                // Если границы отрезка неправильные, то запрашиваются новые значения
+                if (isWrongInput)
                     Console.WriteLine("Неправильные данные. Повторите ввод\n");
             }
-            float e = 0.0001f; // точность
+            // Точность
+            float e = 0.000000001f;
+            // Вычисление результата
             float result = Y(a, b, e);
-            Console.WriteLine("Корень полинома на отрезке [{0}, {1}] = {3}"б
-                a, b, result);
+            Console.WriteLine("Корень полинома на отрезке [{0}, {1}] = {2}", a, b, result);
 
             Console.ReadKey(true);
         }
 
+        // Поиск одного из корней методом деления отрезка пополам
         static float Y(float a, float b, float e)
         {
-            float mid = (a + b) / 2;
             while (true)
             {
-                if (Function(mid) == 0.0f || Math.Abs(b - a) < Math.Abs(e))
+                float mid = (a + b) / 2;
+
+                if (Polynomial(mid) == 0.0f || Math.Abs(b - a) < Math.Abs(e))
                     return mid;
-                if (Function(a) * Function(mid) < 0.0f)
-                    b = mid;
-                if (Function(a) * Function(mid) > 0.0f) // else
+                if (Polynomial(a) * Polynomial(mid) > 0.0f)
                     a = mid;
+                else /*if (Polynomial(a) * Polynomial(mid) < 0.0f) */// else
+                    b = mid;
             }
         }
 
-        static float Function(float x)
+        // Полином
+        static float Polynomial(float x)
         {
-            // x^3 - 8x^2 + 11x + 20x = x(x(x-8)+11)+20
-            return x * (x * (x - 8) + 11) + 20;
+            // x^3 - 8x^2 + 11x + 20x
+            return (x + 1) * (x - 4) * (x - 5);
         }
     }
 }

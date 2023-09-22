@@ -1,78 +1,73 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
+/* Программа я реализует ввод точек 
+экспериментально полученной зависимости y = f(x), 
+вывод их в виде таблицы, вычисляет и выводит в виде таблицы сумму,
+среднее арифметическое, минимальное и максимальное значения по X и по Y.*/
 namespace CPO_lab_1
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            int i;
-            Console.WriteLine("Число точек:");
-            int n = Input(2, 10);
+            // Ввод количества точек
+            Console.WriteLine("Число точек");
+            int pointsNum = Input(2, 10);
 
-            float[] x = new float[n]; // создать массив на n элементов
-            float[] y = new float[n];
+            // Массивы значений точек; их размер = pointsNum
+            float[] x = new float[pointsNum]; 
+            float[] y = new float[pointsNum];
+
+            // Ввод точек
             Console.WriteLine("\n Координаты: ");
-            for (i = 0; i < n; i++)
+            for (int i = 0; i < pointsNum; i++)
             {
                 Console.Write("x[" + i + "] = ");
-                string temp = Console.ReadLine();
-                x[i] = Convert.ToInt32(temp);
+                x[i] = Convert.ToInt32(Console.ReadLine());
                 Console.Write("y[" + i + "] = ");
                 y[i] = Convert.ToInt32(Console.ReadLine());
             }
 
-            //Console.WriteLine("/n You've entered:");
-            //for (i = 0; i < n; i++)
-            //{
-            //    Console.WriteLine("x[{0}] = {1}     | y[{0}] = {2}", i + 1, x[i], y[i]);
-            //}
-
+            // Вывод таблиц
             WriteTable(x, y);
 
-            // НЕ УДАЛЯТЬ, ИНАЧЕ КОНСОЛЬ ЗАКРЫВАЕТСЯ
+            // Ожидание реакции пользователя (не закрывает сразу консоль)
             Console.ReadKey(true);
         }
-
+        
+        // Вывод таблицы со значениями точек, сред.арифм., мин и макс по Х и У
         static void WriteTable(float[] x, float[] y)
         {
-            Console.WriteLine("");
-            Console.WriteLine("_____________________________");
-            Console.WriteLine("{0, 10} |{1, 10}", "x", "y");
-            Console.WriteLine("_____________________________");
+            Console.WriteLine("\n---------------------------------------------");
+            Console.WriteLine("{0, 10} |{1, 10} |{2, 10}", "", "x", "y");
+            Console.WriteLine("---------------------------------------------");
             for (int i = 0; i < x.Length; i++)
             {
-                Console.WriteLine("{0, 10} |{1, 10}", x[i], y[i]);
+                Console.WriteLine("{0, 10} |{1, 10} |{2, 10}","", x[i], y[i]);
             }
-            Console.WriteLine("_____________________________");
-            Console.WriteLine("");
-            Console.WriteLine("_____________________________________________");
-            Console.WriteLine("{0, 10} |{1, 10}    |{2, 10}", "", "x", "y");
-            Console.WriteLine("_____________________________________________");
-            Console.WriteLine("{0, 10} |{1, 10}    |{2, 10}", "min", x.Min(), y.Max());
-            Console.WriteLine("{0, 10} |{1, 10}    |{2, 10}", "max", x.Max(), y.Max());
-            Console.WriteLine("{0, 10} |{1, 10}    |{2, 10}", "mean", x.Average(), y.Average());
-            Console.WriteLine("_____________________________________________");
+            Console.WriteLine("---------------------------------------------");
+            Console.WriteLine("{0, 10} |{1, 10} |{2, 10}", "Минимум", x.Min(), y.Max());
+            Console.WriteLine("{0, 10} |{1, 10} |{2, 10}", "Максимум", x.Max(), y.Max());
+            Console.WriteLine("{0, 10} |{1, 10} |{2, 10}", "Среднее", x.Average(), y.Average());
+            Console.WriteLine("---------------------------------------------");
         }
 
+        // Ввод количества точек
         static int Input(int min, int max)
         {
             int n = -1;
-            bool bad = true;
-            while (bad)
+            bool isWrongInput = true;
+            while (isWrongInput)
             {
-                Console.WriteLine("Введите целое число в диапазоне {0}..{1}", min, max);
+                Console.WriteLine("Введите целое число в диапазоне [{0}; {1}]", min, max);
                 n = Convert.ToInt32(Console.ReadLine());
-                // очистка буфера?????
-                bad = n < min || max < n;
-                if (bad)
+                // Проверка на принадлежность диапазону
+                isWrongInput = n < min || max < n;
+                // Если не принадлежит, запрашивается новое значение
+                if (isWrongInput)
                 {
-                    Console.WriteLine("Вне диапазона {0}..{1}", min, max);
-                    // ждем реакцию ????
+                    Console.WriteLine("Вне диапазона [{0}; {1}]\n", min, max);
                 }
             }
             return n;
