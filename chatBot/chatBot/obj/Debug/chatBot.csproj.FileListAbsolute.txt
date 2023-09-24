@@ -1,0 +1,8 @@
+C:\Users\MSI\source\repos\chatBot\chatBot\bin\Debug\chatBot.exe.config
+C:\Users\MSI\source\repos\chatBot\chatBot\bin\Debug\chatBot.exe
+C:\Users\MSI\source\repos\chatBot\chatBot\bin\Debug\chatBot.pdb
+C:\Users\MSI\source\repos\chatBot\chatBot\obj\Debug\chatBot.csproj.AssemblyReference.cache
+C:\Users\MSI\source\repos\chatBot\chatBot\obj\Debug\chatBot.csproj.SuggestedBindingRedirects.cache
+C:\Users\MSI\source\repos\chatBot\chatBot\obj\Debug\chatBot.csproj.CoreCompileInputs.cache
+C:\Users\MSI\source\repos\chatBot\chatBot\obj\Debug\chatBot.exe
+C:\Users\MSI\source\repos\chatBot\chatBot\obj\Debug\chatBot.pdb
