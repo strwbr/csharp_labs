@@ -24,20 +24,29 @@ namespace chatBot
             //string path = "test.txt";
 
             ReadAllDatasets();
-            UserName = StartChat();
-            Console.WriteLine("Привет, " + UserName);
-            string userInput = "";
+
+            StartChat();
+
+            string userInput;
             while (true)
             {
+                Console.ForegroundColor = ConsoleColor.White;
+
+                Console.Write($"[{DateTime.Now:t}] Вы: ");
                 userInput = Console.ReadLine().Trim();
-                if(userInput.Equals("Пока"))
+                
+                if (userInput.Equals("Пока"))
                 {
-                    Console.WriteLine("Спасибо за диалог!");
+                    Console.ForegroundColor = ConsoleColor.DarkCyan;
+                    Console.WriteLine($"[{DateTime.Now:t}] Бот: Было приятно с Вами, {UserName}, пообщаться. До свидания!");
                     break;
                 }
                 //дальше логика
-                Console.WriteLine(Answer(userInput)); //- метод за диалог основной
                 //вопрос ли, по паттерну ли и тп
+                string botAnswer = Answer(UserName);
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.WriteLine($"[{DateTime.Now:t}] Бот: {botAnswer}");
+
             }
             Console.ReadKey(true);
         }
@@ -81,30 +90,38 @@ namespace chatBot
             return list;
         }
 
-        static string StartChat()
+        static void StartChat()
         {
-            Console.WriteLine("Вас приветствует чат-бот 'Болтун'.\nВведите 'Пока' для выхода.\nВведите свое имя:");
-            return Console.ReadLine().Trim();
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.WriteLine($"[{DateTime.Now:t}] Бот: Вас приветствует чат-бот 'Болтун'.\nВведите 'Пока' для выхода.\nКак Вас зовут?");
+            
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Write($"[{DateTime.Now:t}] Вы: ");
+            UserName = Console.ReadLine().Trim();
+
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            if (UserName != null)
+                Console.WriteLine($"[{DateTime.Now:t}] Бот: Привет, " + UserName);
+            else
+                Console.WriteLine($"[{DateTime.Now:t}] Бот: Привет!");
+            //return Console.ReadLine().Trim();
         }
 
         static string Answer(string userInput)
         {
-            string answer = "";
-            if(userInput.Contains("?")) {
+            string answer;
+            if (userInput.Contains("?"))
                 answer = DefaultAnswers[Random.Next(DefaultAnswers.Count())];
-            }
             else
-            {
                 answer = DefaultPhrases[Random.Next(DefaultPhrases.Count())];
-            }
 
             userInput = String.Join(" ", userInput.ToLower().Split("[ {,|.}?]+".ToCharArray()));
-            foreach(KeyValuePair<string, List<string>> entry in Patterns)
+            foreach (KeyValuePair<string, List<string>> entry in Patterns)
             {
-                foreach(string str in entry.Value)
+                foreach (string str in entry.Value)
                 {
                     Regex regex = new Regex(str);
-                    if(regex.IsMatch(userInput))
+                    if (regex.IsMatch(userInput))
                     {
                         answer = PatternAnswers[entry.Key][Random.Next(PatternAnswers[entry.Key].Count())];
                     }
