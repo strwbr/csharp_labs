@@ -20,7 +20,7 @@ namespace CPO_lab_1
             float[] y = new float[pointsNum];
 
             // Ввод точек
-            Console.WriteLine("\n Координаты: ");
+            Console.WriteLine("\nКоординаты: ");
             for (int i = 0; i < pointsNum; i++)
             {
                 Console.Write("x[" + i + "] = ");
@@ -47,7 +47,7 @@ namespace CPO_lab_1
                 Console.WriteLine("{0, 10} |{1, 10} |{2, 10}","", x[i], y[i]);
             }
             Console.WriteLine("---------------------------------------------");
-            Console.WriteLine("{0, 10} |{1, 10} |{2, 10}", "Минимум", x.Min(), y.Max());
+            Console.WriteLine("{0, 10} |{1, 10} |{2, 10}", "Минимум", x.Min(), y.Min());
             Console.WriteLine("{0, 10} |{1, 10} |{2, 10}", "Максимум", x.Max(), y.Max());
             Console.WriteLine("{0, 10} |{1, 10} |{2, 10}", "Среднее", x.Average(), y.Average());
             Console.WriteLine("---------------------------------------------");
@@ -60,7 +60,7 @@ namespace CPO_lab_1
             bool isWrongInput = true;
             while (isWrongInput)
             {
-                Console.WriteLine("Введите целое число в диапазоне [{0}; {1}]", min, max);
+                Console.Write("Введите целое число в диапазоне [{0}; {1}]: ", min, max);
                 n = Convert.ToInt32(Console.ReadLine());
                 // Проверка на принадлежность диапазону
                 isWrongInput = n < min || max < n;
