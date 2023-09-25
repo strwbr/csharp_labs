@@ -43,7 +43,7 @@ namespace chatBot
                 }
                 //дальше логика
                 //вопрос ли, по паттерну ли и тп
-                string botAnswer = Answer(UserName);
+                string botAnswer = Answer(userInput);
                 Console.ForegroundColor = ConsoleColor.DarkCyan;
                 Console.WriteLine($"[{DateTime.Now:t}] Бот: {botAnswer}");
 
@@ -109,13 +109,15 @@ namespace chatBot
 
         static string Answer(string userInput)
         {
+            // флаг что это вопрос
+            // в отдельном файле - вопросы по паттернам
             string answer;
             if (userInput.Contains("?"))
                 answer = DefaultAnswers[Random.Next(DefaultAnswers.Count())];
             else
                 answer = DefaultPhrases[Random.Next(DefaultPhrases.Count())];
 
-            userInput = String.Join(" ", userInput.ToLower().Split("[ {,|.}?]+".ToCharArray()));
+            userInput = String.Join(" ", userInput.ToLower().Split("[ {,|.}?]".ToCharArray()));
             foreach (KeyValuePair<string, List<string>> entry in Patterns)
             {
                 foreach (string str in entry.Value)

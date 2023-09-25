@@ -49,7 +49,7 @@ namespace task_4
                     return mid;
                 if (Polynomial(a) * Polynomial(mid) > 0.0f)
                     a = mid;
-                else /*if (Polynomial(a) * Polynomial(mid) < 0.0f) */// else
+                else 
                     b = mid;
             }
         }
