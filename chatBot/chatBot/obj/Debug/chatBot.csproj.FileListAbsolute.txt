@@ -14,3 +14,11 @@ C:\Users\boris\CodeProjects\CSharpCode\csharp_labs\chatBot\chatBot\obj\Debug\cha
 C:\Users\boris\CodeProjects\CSharpCode\csharp_labs\chatBot\chatBot\obj\Debug\chatBot.csproj.CoreCompileInputs.cache
 C:\Users\boris\CodeProjects\CSharpCode\csharp_labs\chatBot\chatBot\obj\Debug\chatBot.exe
 C:\Users\boris\CodeProjects\CSharpCode\csharp_labs\chatBot\chatBot\obj\Debug\chatBot.pdb
+C:\Users\MSI\учеба (суприм нью)\конструир по\csharp_labs\chatBot\chatBot\bin\Debug\chatBot.exe.config
+C:\Users\MSI\учеба (суприм нью)\конструир по\csharp_labs\chatBot\chatBot\bin\Debug\chatBot.exe
+C:\Users\MSI\учеба (суприм нью)\конструир по\csharp_labs\chatBot\chatBot\bin\Debug\chatBot.pdb
+C:\Users\MSI\учеба (суприм нью)\конструир по\csharp_labs\chatBot\chatBot\obj\Debug\chatBot.csproj.AssemblyReference.cache
+C:\Users\MSI\учеба (суприм нью)\конструир по\csharp_labs\chatBot\chatBot\obj\Debug\chatBot.csproj.SuggestedBindingRedirects.cache
+C:\Users\MSI\учеба (суприм нью)\конструир по\csharp_labs\chatBot\chatBot\obj\Debug\chatBot.csproj.CoreCompileInputs.cache
+C:\Users\MSI\учеба (суприм нью)\конструир по\csharp_labs\chatBot\chatBot\obj\Debug\chatBot.exe
+C:\Users\MSI\учеба (суприм нью)\конструир по\csharp_labs\chatBot\chatBot\obj\Debug\chatBot.pdb

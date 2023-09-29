@@ -135,9 +135,13 @@ namespace chatBot
                         //answer = PatternAnswers[entry.Key][Random.Next(PatternAnswers[entry.Key].Count())];
 
                         //пока не запускать, файла нет)))
-                        answer = (isQuestion) 
-                            ? PatternAnswers[entry.Key][Random.Next(PatternAnswers[entry.Key].Count())] 
-                            : PatternPhrases[entry.Key][Random.Next(PatternPhrases[entry.Key].Count())];
+                        answer = (isQuestion)
+                            ? (PatternAnswers.ContainsKey(entry.Key)) 
+                                ? PatternAnswers[entry.Key][Random.Next(PatternAnswers[entry.Key].Count())] 
+                                : answer
+                            : (PatternPhrases.ContainsKey(entry.Key)) 
+                                ? PatternPhrases[entry.Key][Random.Next(PatternPhrases[entry.Key].Count())] 
+                                : answer;
                     }
                 }
             }
