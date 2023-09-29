@@ -16,6 +16,7 @@ namespace chatBot
         static List<string> DefaultPhrases = new List<string>();
         static Dictionary<string, List<string>> Patterns = new Dictionary<string, List<string>>();
         static Dictionary<string, List<string>> PatternAnswers = new Dictionary<string, List<string>>();
+        static Dictionary<string, List<string>> PatternPhrases = new Dictionary<string, List<string>>();
         static string UserName = "";
         static Random Random = new Random();
 
@@ -34,7 +35,7 @@ namespace chatBot
 
                 Console.Write($"[{DateTime.Now:t}] Вы: ");
                 userInput = Console.ReadLine().Trim();
-                
+
                 if (userInput.Equals("Пока"))
                 {
                     Console.ForegroundColor = ConsoleColor.DarkCyan;
@@ -57,6 +58,8 @@ namespace chatBot
             DefaultPhrases = ReadDefaultFromFile("DefaultPhrases.txt");
             Patterns = ReadPatternsFromFile("Patterns.txt");
             PatternAnswers = ReadPatternsFromFile("PatternAnswers.txt");
+            //добавить этот файл
+            PatternPhrases = ReadPatternsFromFile("PatternPhrases.txt");
         }
 
         static Dictionary<string, List<string>> ReadPatternsFromFile(string path)
@@ -66,7 +69,7 @@ namespace chatBot
             while (!reader.EndOfStream)
             {
                 //ключ первый, значение второе
-                string[] line = reader.ReadLine().Split('|');
+                string[] line = reader.ReadLine().ToLower().Split('|');
                 if (dictionary.ContainsKey(line[0]))
                 {
                     dictionary[line[0]].Add(line[1]);
@@ -94,7 +97,7 @@ namespace chatBot
         {
             Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.WriteLine($"[{DateTime.Now:t}] Бот: Вас приветствует чат-бот 'Болтун'.\nВведите 'Пока' для выхода.\nКак Вас зовут?");
-            
+
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write($"[{DateTime.Now:t}] Вы: ");
             UserName = Console.ReadLine().Trim();
@@ -112,10 +115,14 @@ namespace chatBot
             // флаг что это вопрос
             // в отдельном файле - вопросы по паттернам
             string answer;
-            if (userInput.Contains("?"))
-                answer = DefaultAnswers[Random.Next(DefaultAnswers.Count())];
-            else
-                answer = DefaultPhrases[Random.Next(DefaultPhrases.Count())];
+            bool isQuestion = userInput.Contains("?");
+            //if (userInput.Contains("?"))
+            //    answer = DefaultAnswers[Random.Next(DefaultAnswers.Count())];
+            //else
+            //    answer = DefaultPhrases[Random.Next(DefaultPhrases.Count())];
+            answer = (isQuestion)
+                ? DefaultAnswers[Random.Next(DefaultAnswers.Count())]
+                : DefaultPhrases[Random.Next(DefaultPhrases.Count())];
 
             userInput = String.Join(" ", userInput.ToLower().Split("[ {,|.}?]".ToCharArray()));
             foreach (KeyValuePair<string, List<string>> entry in Patterns)
@@ -125,7 +132,12 @@ namespace chatBot
                     Regex regex = new Regex(str);
                     if (regex.IsMatch(userInput))
                     {
-                        answer = PatternAnswers[entry.Key][Random.Next(PatternAnswers[entry.Key].Count())];
+                        //answer = PatternAnswers[entry.Key][Random.Next(PatternAnswers[entry.Key].Count())];
+
+                        //пока не запускать, файла нет)))
+                        answer = (isQuestion) 
+                            ? PatternAnswers[entry.Key][Random.Next(PatternAnswers[entry.Key].Count())] 
+                            : PatternPhrases[entry.Key][Random.Next(PatternPhrases[entry.Key].Count())];
                     }
                 }
             }
