@@ -34,19 +34,23 @@ namespace CPO_lab_2
             writer.Write(this.Price.ToString() + '\n');
         }
 
-        public void ReadFromFile(StreamReader reader)
+        public bool ReadFromFile(StreamReader reader)
         {
-            string[] data = reader.ReadLine().Split('|');
-            this.Type = data[0];
-            this.Company = data[1];
-            this.Price = float.Parse(data[2]);
-        }
+            string line = reader.ReadLine();
+            if(string.IsNullOrEmpty(line))
+                return false;
+            
+            string[] data = line.Split('|');
+            if(data.Length != 3)
+                return false;
 
-        // Отрефакторить для табличного вывода
-        public override string ToString()
-        {
-            return String.Format("{0, 20}    |{1, 30}    |{2, 10}", Type, Company, Price);
-            //return Type + " " + Company + " " + Price.ToString();
+            Type = data[0].Trim();
+            Company = data[1].Trim();
+
+            if (!float.TryParse(data[2].Trim(), out float price))
+                return false;
+            Price = price;
+            return true;
         }
     }
 }

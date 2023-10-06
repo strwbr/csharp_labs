@@ -1,3 +1,0 @@
-type2|company2|120
-type3|company3|130
-type4|company4|140
