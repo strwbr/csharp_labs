@@ -27,26 +27,32 @@ namespace CPO_lab_2
             Price = price;
         }
 
+        // Запись объекта в файл
         public void WriteToFile(StreamWriter writer)
         {
-            writer.Write(this.Type + '|');
-            writer.Write(this.Company + '|');
-            writer.Write(this.Price.ToString() + '\n');
+            writer.Write(Type + '|');
+            writer.Write(Company + '|');
+            writer.Write(Price.ToString() + '\n');
         }
+
+        // Считывание объекта с файла
 
         public bool ReadFromFile(StreamReader reader)
         {
             string line = reader.ReadLine();
+            // если считанная строка пустая
             if(string.IsNullOrEmpty(line))
                 return false;
             
             string[] data = line.Split('|');
+            // если отсутствует значения для одного из полей класса
             if(data.Length != 3)
                 return false;
 
             Type = data[0].Trim();
             Company = data[1].Trim();
 
+            // если в качестве цены указана строка
             if (!float.TryParse(data[2].Trim(), out float price))
                 return false;
             Price = price;
