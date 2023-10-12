@@ -46,6 +46,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stationery.cs" />
+    <Compile Include="StationeryService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

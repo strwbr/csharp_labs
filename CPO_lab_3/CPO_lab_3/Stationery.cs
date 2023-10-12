@@ -43,20 +43,5 @@ namespace CPO_lab_3
             Price = reader.ReadSingle();
             return true;
         }
-
-        public static void Search()
-        {
-            Console.WriteLine("Search()");
-        }
-
-        public static void Edit()
-        {
-            Console.WriteLine("Edit()");
-        }
-
-        public static void Sort()
-        {
-            Console.WriteLine("Sort()");
-        }
     }
 }
