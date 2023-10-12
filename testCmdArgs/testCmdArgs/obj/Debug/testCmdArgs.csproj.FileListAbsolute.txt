@@ -1,0 +1,8 @@
+C:\Users\boris\CodeProjects\CSharpCode\csharp_labs\testCmdArgs\testCmdArgs\bin\Debug\testCmdArgs.exe.config
+C:\Users\boris\CodeProjects\CSharpCode\csharp_labs\testCmdArgs\testCmdArgs\bin\Debug\testCmdArgs.exe
+C:\Users\boris\CodeProjects\CSharpCode\csharp_labs\testCmdArgs\testCmdArgs\bin\Debug\testCmdArgs.pdb
+C:\Users\boris\CodeProjects\CSharpCode\csharp_labs\testCmdArgs\testCmdArgs\obj\Debug\testCmdArgs.csproj.AssemblyReference.cache
+C:\Users\boris\CodeProjects\CSharpCode\csharp_labs\testCmdArgs\testCmdArgs\obj\Debug\testCmdArgs.csproj.SuggestedBindingRedirects.cache
+C:\Users\boris\CodeProjects\CSharpCode\csharp_labs\testCmdArgs\testCmdArgs\obj\Debug\testCmdArgs.csproj.CoreCompileInputs.cache
+C:\Users\boris\CodeProjects\CSharpCode\csharp_labs\testCmdArgs\testCmdArgs\obj\Debug\testCmdArgs.exe
+C:\Users\boris\CodeProjects\CSharpCode\csharp_labs\testCmdArgs\testCmdArgs\obj\Debug\testCmdArgs.pdb
