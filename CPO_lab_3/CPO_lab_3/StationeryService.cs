@@ -7,22 +7,9 @@ using System.Threading.Tasks;
 
 namespace CPO_lab_3
 {
-    // Класс для работы с объектами типа Stationery
+    // Класс сервиса для работы с объектами типа Stationery
     internal class StationeryService
     {
-        //public Stationery[] Stationeries;
-
-        //public StationeryService(int size)
-        //{
-        //    Stationeries = new Stationery[size];
-        //}
-
-        //// Конструктор с проверкой параметров на null
-        //public StationeryService(Stationery[] stationeries)
-        //{
-        //    Stationeries = stationeries ?? throw new ArgumentNullException(nameof(stationeries));
-        //}
-
         // Сохранение массива данных в файл с путем path
         public void SaveToFile(Stationery[] stationeries, string path)
         {
@@ -114,19 +101,19 @@ namespace CPO_lab_3
         // Поиск - заглушка
         public void Search()
         {
-            Console.WriteLine("Search()");
+            Console.WriteLine("Вызван метод поиска: Search()");
         }
 
         // Редактирование - заглушка
         public void Edit()
         {
-            Console.WriteLine("Edit()");
+            Console.WriteLine("Вызван метод редактирования: Edit()");
         }
 
         // Сортировка - заглушка
         public void Sort()
         {
-            Console.WriteLine("Sort()");
+            Console.WriteLine("Вызван метод сортировки: Sort()");
         }
 
         // Проверка файла с путем path на пустоту

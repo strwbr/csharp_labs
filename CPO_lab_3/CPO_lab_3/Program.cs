@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -11,13 +12,14 @@ namespace CPO_lab_3
     {
         static void Main(string[] args)
         {
+            // Входной и выходной файлы
             string inputFile, outputFile;
+            // Получение пути к файлам через аргументы командной строки
             if (args.Length > 0)
             {
                 inputFile = args[0];
                 outputFile = args[1];
-                //outputFile = "test_file.dat";
-            }
+            } // При отсутствии аргументов - ввод путей с клавиатуры 
             else
             {
                 Console.WriteLine("Отсутствуют идентификаторы входного и выходного файлов.");
@@ -27,18 +29,22 @@ namespace CPO_lab_3
                 outputFile = Console.ReadLine();
             }
 
-            Stationery[] Data = null;
-            StationeryService service = new StationeryService();
+            Menu(outputFile);
+        }
 
+        //  Меню программы
+        static void Menu(string filePath)
+        {
+            Stationery[] data = null; // Массив данных
+            StationeryService service = new StationeryService(); // Класс сервиса для работы с объектами типа Stationery
             bool flag = true; // флаг работы программы
             while (flag)
             {
-                PrintMenu();
-
+                PrintMenu(); // Вывод меню
+                // Считывание команды с консоли
                 Console.Write("Введите команду: ");
                 string command = Console.ReadLine();
-                Console.Clear();
-                //Console.WriteLine("\n************************************\n");
+                Console.Clear(); // Очистка консоли
 
                 switch (command)
                 {
@@ -49,43 +55,41 @@ namespace CPO_lab_3
                     case "1":
                         Console.Write("Введите количество товаров: ");
                         int size = int.Parse(Console.ReadLine());
-                        Data = service.InputAllData(size);
+                        data = service.InputAllData(size);
                         Console.WriteLine("\nВы завершили ввод данных.\nДля возврата в меню нажмите любую клавишу...");
                         Console.ReadKey(true);
                         break;
                     case "2":
-                        if (Data == null)
+                        if (data == null)
                             Console.WriteLine("Данные отсутствуют");
                         else
                         {
-                            service.SaveToFile(Data, outputFile);
+                            service.SaveToFile(data, filePath);
                             Console.WriteLine("Данные успешно сохранены в файл");
                         }
-
                         Console.WriteLine("\nДля возврата в меню нажмите любую клавишу...");
                         Console.ReadKey(true);
                         break;
                     case "3":
-                        Data = service.LoadFromFile(outputFile);
+                        data = service.LoadFromFile(filePath);
 
-                        if (Data == null)
+                        if (data == null)
                         {
                             Console.WriteLine("Файл пустой");
                         }
                         else
                         {
                             Console.WriteLine("Данные успешно загружены из файла");
-                            service.PrintData(Data);
+                            service.PrintData(data);
                         }
-                        //Console.WriteLine((Data == null) ? "Файл пустой" : "Данные успешно загружены из файла");
                         Console.WriteLine("\nДля возврата в меню нажмите любую клавишу...");
                         Console.ReadKey(true);
                         break;
                     case "4":
-                        if (Data == null)
+                        if (data == null)
                             Console.WriteLine("Данные отсутствуют");
                         else
-                            service.PrintData(Data);
+                            service.PrintData(data);
 
                         Console.WriteLine("\nДля возврата в меню нажмите любую клавишу...");
                         Console.ReadKey(true);
@@ -105,7 +109,7 @@ namespace CPO_lab_3
         // Вывод меню
         static void PrintMenu()
         {
-            Console.Clear(); // очистка консоли
+            Console.Clear(); // Очистка консоли
 
             Console.WriteLine("Меню");
             Console.WriteLine("----------------------------");
@@ -214,3 +218,4 @@ namespace CPO_lab_3
 
     }
 }
+
