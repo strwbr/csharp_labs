@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CPO_lab_3
 {
@@ -99,22 +96,13 @@ namespace CPO_lab_3
         }
 
         // Поиск - заглушка
-        public void Search()
-        {
-            Console.WriteLine("Вызван метод поиска: Search()");
-        }
+        public void Search() => Console.WriteLine("Вызван метод поиска: Search()");
 
         // Редактирование - заглушка
-        public void Edit()
-        {
-            Console.WriteLine("Вызван метод редактирования: Edit()");
-        }
+        public void Edit() => Console.WriteLine("Вызван метод редактирования: Edit()");
 
         // Сортировка - заглушка
-        public void Sort()
-        {
-            Console.WriteLine("Вызван метод сортировки: Sort()");
-        }
+        public void Sort() => Console.WriteLine("Вызван метод сортировки: Sort()");
 
         // Проверка файла с путем path на пустоту
         private bool IsFileEmpty(string path)

@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 
 namespace CPO_lab_3
 {
+    // Класс "Канцелярский товар"
     internal class Stationery
     {
-        public string Type { get; set; }
-        public string Company { get; set; }
-        public float Price { get; set; }
-
+        public string Type { get; set; } // Тип товара
+        public string Company { get; set; } // Фирма-производитель
+        public float Price { get; set; } // Цена
+        // Конструкторы
         public Stationery()
         {
             Type = string.Empty;

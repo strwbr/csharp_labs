@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.Design;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CPO_lab_3
 {
@@ -74,9 +68,7 @@ namespace CPO_lab_3
                         data = service.LoadFromFile(filePath);
 
                         if (data == null)
-                        {
                             Console.WriteLine("Файл пустой");
-                        }
                         else
                         {
                             Console.WriteLine("Данные успешно загружены из файла");
@@ -90,7 +82,6 @@ namespace CPO_lab_3
                             Console.WriteLine("Данные отсутствуют");
                         else
                             service.PrintData(data);
-
                         Console.WriteLine("\nДля возврата в меню нажмите любую клавишу...");
                         Console.ReadKey(true);
                         break;
@@ -105,7 +96,6 @@ namespace CPO_lab_3
                 }
             }
         }
-
         // Вывод меню
         static void PrintMenu()
         {
@@ -123,99 +113,6 @@ namespace CPO_lab_3
             Console.WriteLine("0 - Выход");
             Console.WriteLine("----------------------------");
         }
-
-        //static Stationery[] InputAllData(int size)
-        //{
-        //    Stationery[] stationeries = new Stationery[size];
-        //    for (int i = 0; i < size; i++)
-        //    {
-        //        Console.WriteLine($"Товар {i + 1}");
-        //        stationeries[i] = ReadDataFromConsole();
-        //    }
-        //    return stationeries;
-        //}
-
-        //// Считывание информации об одном объекте с консоли
-        //static Stationery ReadDataFromConsole()
-        //{
-        //    Stationery temp = new Stationery();
-
-        //    Console.Write("Тип: ");
-        //    temp.Type = Console.ReadLine();
-
-        //    Console.Write("Фирма-производитель: ");
-        //    temp.Company = Console.ReadLine();
-
-        //    bool success = false; // флаг успешности ввода
-        //    // Запрос ввода цены повторяется, пока пользователь не введет число
-        //    while (!success)
-        //    {
-        //        Console.Write("Цена: ");
-        //        success = float.TryParse(Console.ReadLine(), out float price);
-        //        if (success)
-        //        {
-        //            temp.Price = price;
-        //            break;
-        //        }
-        //        Console.WriteLine("Неверный формат. Введите число");
-        //    }
-        //    return temp;
-        //}
-
-        // Пункт 2: Сохранение данных из массива в файл
-        //static void SaveToFile(Stationery[] stationeries, string path)
-        //{
-        //    BinaryWriter writer = new BinaryWriter(File.Open(path, FileMode.OpenOrCreate));
-        //    foreach (Stationery el in stationeries)
-        //    {
-        //        el.WriteToFile(writer);
-        //    }
-        //    writer.Close();
-        //}
-
-        // Пункт 3: Загрузка данных из файла в массив
-        //static Stationery[] LoadFromFile(string path)
-        //{
-        //    //if (IsFileEmpty(path))
-        //    //    return null;
-
-        //    List<Stationery> list = new List<Stationery>();
-        //    BinaryReader reader = new BinaryReader(File.Open(path, FileMode.OpenOrCreate));
-        //    while (reader.PeekChar() > -1)
-        //    {
-        //        Stationery temp = new Stationery();
-        //        if (temp.ReadFromFile(reader))
-        //            list.Add(temp);
-        //    }
-        //    reader.Close();
-        //    return list.ToArray();
-        //}
-
-        // Пункт 4: Вывод данных из массива в виде таблицы
-        //static void PrintData(Stationery[] stationeries)
-        //{
-        //    // Формат строки таблицы
-        //    string format = $"| {{0,-5}} | {{1,-15}} | {{2,-20}} | {{3,-10}} |";
-
-        //    Console.WriteLine("---------------------------------------------------------------");
-        //    Console.WriteLine(format, "", "Тип", "Фирма-производитель", "Цена");
-        //    Console.WriteLine("---------------------------------------------------------------");
-
-        //    for (int i = 0; i < stationeries.Length; i++)
-        //    {
-        //        Console.WriteLine(format, i + 1, stationeries[i].Type, stationeries[i].Company, stationeries[i].Price);
-        //        Console.WriteLine("---------------------------------------------------------------");
-        //    }
-        //}
-
-        // Проверка файла на пустоту (проверяется длина содержимого файла)
-        //static bool IsFileEmpty(string path)
-        //{
-        //    var fileInfo = new FileInfo(path);
-        //    return fileInfo.Length == 0;
-        //}
-
-
     }
 }
 
