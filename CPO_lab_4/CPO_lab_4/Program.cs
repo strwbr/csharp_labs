@@ -252,13 +252,13 @@ namespace CPO_lab_4
 
             while (!success)
             {
-                if (int.TryParse(Console.ReadLine(), out int listNumber))
+                if (int.TryParse(Console.ReadLine(), out int listNumber) && (listNumber > 0 && listNumber <= data.Length))
                 {
                     if (listNumber == 0)
                     {
                         return;
                     }
-                    else if (data[listNumber - 1] != null)
+                    else
                     {
                         success = true;
                         Console.WriteLine("Введите новое значение поля, если хотите его отредактировать");
