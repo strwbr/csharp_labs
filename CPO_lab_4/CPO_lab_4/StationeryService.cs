@@ -59,6 +59,20 @@ namespace CPO_lab_4
             }
         }
 
+        // Вывод одного элемента в виде таблицы
+        public void PrintOneStationery(Stationery stationery, int listNumber)
+        {
+            // Формат строки таблицы
+            string format = $"| {{0,-5}} | {{1,-15}} | {{2,-20}} | {{3,-10}} |";
+
+            Console.WriteLine("---------------------------------------------------------------");
+            Console.WriteLine(format, "", "Тип", "Фирма-производитель", "Цена");
+            Console.WriteLine("---------------------------------------------------------------");
+
+            Console.WriteLine(format, listNumber, stationery.Type, stationery.Company, stationery.Price);
+            Console.WriteLine("---------------------------------------------------------------");
+        }
+
         // Ввод массива данных с консоли
         public Stationery[] InputAllData(int size)
         {
@@ -98,17 +112,46 @@ namespace CPO_lab_4
             return temp;
         }
 
-        // Поиск - заглушка
-        public void Search()
+        // Считывание информации с консоли для редактирования товара
+        private Stationery ReadDataFromConsoleForEdit()
         {
-            Console.WriteLine("Вызван метод поиска: Search()");
+            Stationery temp = new Stationery();
+
+            Console.Write("Тип: ");
+            temp.Type = Console.ReadLine();
+
+            Console.Write("Фирма-производитель: ");
+            temp.Company = Console.ReadLine();
+
+            bool success = false; // флаг успешности ввода
+            // Запрос ввода цены повторяется, пока пользователь не введет число или -
+            while (!success)
+            {
+                Console.Write("Цена: ");
+                string tempPrice = Console.ReadLine();
+                float price = tempPrice.Equals("-") ? -1 : 0;
+                success = price == -1 || float.TryParse(tempPrice, out price);
+                if (success)
+                {
+                    temp.Price = price;
+                    break;
+                }
+                Console.WriteLine("Неверный формат. Введите число");
+            }
+            return temp;
         }
 
+        // Поиск - заглушка
+        //public void Search()
+        //{
+        //    Console.WriteLine("Вызван метод поиска: Search()");
+        //}
+
         // Редактирование - заглушка
-        public void Edit()
-        {
-            Console.WriteLine("Вызван метод редактирования: Edit()");
-        }
+        //public void Edit()
+        //{
+        //    Console.WriteLine("Вызван метод редактирования: Edit()");
+        //}
 
         // Сортировка по полю Тип товара
         public Stationery[] SortByType(Stationery[] data)
@@ -121,14 +164,14 @@ namespace CPO_lab_4
         public Stationery[] SortByCompany(Stationery[] data)
         {
             Console.WriteLine("Сортировка по полю Type");
-            return data.OrderBy(x => x.Type).ToArray();
+            return data.OrderBy(x => x.Company).ToArray();
         }
 
-        // Сортировка по полю Тип товара
-        public Stationery[] SortByType(Stationery[] data)
+        // Сортировка по полю Цена товара
+        public Stationery[] SortByPrice(Stationery[] data)
         {
             Console.WriteLine("Сортировка по полю Type");
-            return data.OrderBy(x => x.Type).ToArray();
+            return data.OrderBy(x => x.Price).ToArray();
         }
 
         // Проверка файла с путем path на пустоту
@@ -136,6 +179,34 @@ namespace CPO_lab_4
         {
             var fileInfo = new FileInfo(path);
             return fileInfo.Length == 0;
+        }
+
+        // Поиск по полю Тип товара
+        public Stationery[] SearchByType(Stationery[] data, string query)
+        {
+            return Array.FindAll(data, elem => elem.Type.ToLower() == query);
+        }
+        
+        // Поиск по полю Фирма-производитель
+        public Stationery[] SearchByCompany(Stationery[] data, string query)
+        {
+            return Array.FindAll(data, elem => elem.Company.ToLower() == query);
+        }
+
+        // Поиск по полю Цена товара
+        public Stationery[] SearchByPrice(Stationery[] data, float query)
+        {
+            return Array.FindAll(data, elem => elem.Price == query);
+        }
+
+        // Редактирование товара
+        public Stationery EditStationery(Stationery data)
+        {
+            Stationery temp = ReadDataFromConsoleForEdit();
+            data.Type = (!temp.Type.Equals("-")) ? temp.Type : data.Type;
+            data.Company = (!temp.Company.Equals("-")) ? temp.Company : data.Company;
+            data.Price = (temp.Price != -1) ? temp.Price : data.Price;
+            return data;
         }
     }
 }

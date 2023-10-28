@@ -89,10 +89,18 @@ namespace CPO_lab_4
                         Console.WriteLine("\nДля возврата в меню нажмите любую клавишу...");
                         Console.ReadKey(true);
                         break;
-                    case "5": service.Search(); Console.ReadKey(true); break;
-                    case "6": service.Edit(); Console.ReadKey(true); break;
+                    case "5": 
+                        Search(service, data);
+                        Console.WriteLine("\nДля возврата в меню нажмите любую клавишу...");
+                        Console.ReadKey(true);
+                        break;
+                    case "6": 
+                        Edit(service, data);
+                        Console.WriteLine("\nДля возврата в меню нажмите любую клавишу...");
+                        Console.ReadKey(true);
+                        break;
                     case "7":
-                        Sort(service);
+                        Sort(service, data);
                         Console.ReadKey(true);
                         break;
                     default:
@@ -121,7 +129,7 @@ namespace CPO_lab_4
             Console.WriteLine("----------------------------");
         }
 
-        static void Sort(StationeryService service)
+        static void Sort(StationeryService service, Stationery[] data)
         {
             bool flag = true;
 
@@ -135,21 +143,20 @@ namespace CPO_lab_4
                 Console.WriteLine("0 - Возврат в главное меню");
                 Console.Write("Введите команду: ");
                 string command = Console.ReadLine();
-                Stationery[] data;
                 switch (command)
                 {
                     case "1":
-                        data = service.Sort("type");
+                        data = service.SortByType(data);
                         Console.WriteLine("Результат сортировки");
                         service.PrintData(data);
                         break;
                     case "2":
-                        data = service.Sort("company");
+                        data = service.SortByCompany(data);
                         Console.WriteLine("Результат сортировки");
                         service.PrintData(data);
                         break;
                     case "3":
-                        data = service.Sort("price");
+                        data = service.SortByPrice(data);
                         Console.WriteLine("Результат сортировки");
                         service.PrintData(data);
                         break;
@@ -163,8 +170,109 @@ namespace CPO_lab_4
 
             }
 
+            
 
+        }
 
+        // Вспомогательный метод для вывода результата поиска
+        static void PrintSearchData(StationeryService service, Stationery[] data)
+        {
+            Console.WriteLine("Результат поиска");
+
+            if (data.Length > 0)
+            {
+                service.PrintData(data);
+            }
+            else
+            {
+                Console.WriteLine("Ничего не найдено");
+            }
+        }
+
+        // Поиск записей в массиве (в файл изменения не попадают)
+        static void Search(StationeryService service, Stationery[] data)
+        {
+            bool flag = true;
+
+            while (flag)
+            {
+                Console.WriteLine("Поиск");
+                Console.WriteLine("Выберите поле для поиска:");
+                Console.WriteLine("1 - Тип товара");
+                Console.WriteLine("2 - Фирма-производитель");
+                Console.WriteLine("3 - Цена");
+                Console.WriteLine("0 - Возврат в главное меню");
+                Console.Write("Введите команду: ");
+                string command = Console.ReadLine();
+                switch (command)
+                {
+                    case "1":
+                        Console.Write("Введите тип товара для поиска: ");
+                        string type = Console.ReadLine().ToLower();
+                        PrintSearchData(service, service.SearchByType(data, type));               
+                        break;
+                    case "2":
+                        Console.Write("Введите фирму-производителя для поиска: ");
+                        string company = Console.ReadLine().ToLower();
+                        PrintSearchData(service, service.SearchByCompany(data, company));
+                        break;
+                    case "3":
+                        bool success = false;
+                        while (!success)
+                        {
+                            Console.Write("Введите цену товара для поиска: ");
+                            success = float.TryParse(Console.ReadLine(), out float price);
+                            if (success)
+                            {
+                                PrintSearchData(service, service.SearchByPrice(data, price));
+                                break;
+                            }
+                            Console.WriteLine("Неверный формат. Введите число");
+                        }
+                        break;
+                    case "0": flag = false; break;
+                    default:
+                        Console.WriteLine("Ошибочная команда. Повторите ввод");
+                        Console.WriteLine("\nДля возврата в меню нажмите любую клавишу...");
+                        Console.ReadKey(true);
+                        break;
+                }
+
+            }
+        }
+
+        // Редактирование записей в массиве (в файл изменения не попадают)
+        static void Edit(StationeryService service, Stationery[] data)
+        {
+            bool success = false;
+            Console.WriteLine("Редактирование");
+            Console.WriteLine("Введите номер товара, который хотите отредактировать");
+            Console.WriteLine("Или введите 0 для возврата в главное меню");
+            Console.Write("Введите команду: ");
+
+            while (!success)
+            {
+                if (int.TryParse(Console.ReadLine(), out int listNumber))
+                {
+                    if (listNumber == 0)
+                    {
+                        return;
+                    }
+                    else if (data[listNumber - 1] != null)
+                    {
+                        success = true;
+                        Console.WriteLine("Введите новое значение поля, если хотите его отредактировать");
+                        Console.WriteLine("Иначе введите '-'");
+                        data[listNumber - 1] = service.EditStationery(data[listNumber - 1]);
+                        Console.WriteLine("Отредактированная запись");
+                        service.PrintOneStationery(data[listNumber - 1], listNumber);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Неверный номер. Повторите ввод");
+                }
+            }
         }
     }
 }
