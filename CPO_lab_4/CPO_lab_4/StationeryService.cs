@@ -141,63 +141,14 @@ namespace CPO_lab_4
             return temp;
         }
 
-        // Поиск - заглушка
-        //public void Search()
-        //{
-        //    Console.WriteLine("Вызван метод поиска: Search()");
-        //}
-
-        // Редактирование - заглушка
-        //public void Edit()
-        //{
-        //    Console.WriteLine("Вызван метод редактирования: Edit()");
-        //}
-
-        // Сортировка по полю Тип товара
-        public Stationery[] SortByType(Stationery[] data)
-        {
-            Console.WriteLine("Сортировка по полю Type");
-            return data.OrderBy(x => x.Type).ToArray();
-        }
-
-        // Сортировка по полю Фирма-производитель
-        public Stationery[] SortByCompany(Stationery[] data)
-        {
-            Console.WriteLine("Сортировка по полю Type");
-            return data.OrderBy(x => x.Company).ToArray();
-        }
-
-        // Сортировка по полю Цена товара
-        public Stationery[] SortByPrice(Stationery[] data)
-        {
-            Console.WriteLine("Сортировка по полю Type");
-            return data.OrderBy(x => x.Price).ToArray();
-        }
-
-        // Проверка файла с путем path на пустоту
-        private bool IsFileEmpty(string path)
-        {
-            var fileInfo = new FileInfo(path);
-            return fileInfo.Length == 0;
-        }
-
         // Поиск по полю Тип товара
-        public Stationery[] SearchByType(Stationery[] data, string query)
-        {
-            return Array.FindAll(data, elem => elem.Type.ToLower() == query);
-        }
-        
+        public Stationery[] SearchByType(Stationery[] data, string query) => Array.FindAll(data, elem => elem.Type.ToLower() == query);
+
         // Поиск по полю Фирма-производитель
-        public Stationery[] SearchByCompany(Stationery[] data, string query)
-        {
-            return Array.FindAll(data, elem => elem.Company.ToLower() == query);
-        }
+        public Stationery[] SearchByCompany(Stationery[] data, string query) => Array.FindAll(data, elem => elem.Company.ToLower() == query);
 
         // Поиск по полю Цена товара
-        public Stationery[] SearchByPrice(Stationery[] data, float query)
-        {
-            return Array.FindAll(data, elem => elem.Price == query);
-        }
+        public Stationery[] SearchByPrice(Stationery[] data, float query) => Array.FindAll(data, elem => elem.Price == query);
 
         // Редактирование товара
         public Stationery EditStationery(Stationery data)
@@ -207,6 +158,22 @@ namespace CPO_lab_4
             data.Company = (!temp.Company.Equals("-")) ? temp.Company : data.Company;
             data.Price = (temp.Price != -1) ? temp.Price : data.Price;
             return data;
+        }
+
+        // Сортировка по полю Тип товара
+        public Stationery[] SortByType(Stationery[] data) => data.OrderBy(x => x.Type).ToArray();
+
+        // Сортировка по полю Фирма-производитель
+        public Stationery[] SortByCompany(Stationery[] data) => data.OrderBy(x => x.Company).ToArray();
+
+        // Сортировка по полю Цена товара
+        public Stationery[] SortByPrice(Stationery[] data) => data.OrderBy(x => x.Price).ToArray();
+
+        // Проверка файла с путем path на пустоту
+        private bool IsFileEmpty(string path)
+        {
+            var fileInfo = new FileInfo(path);
+            return fileInfo.Length == 0;
         }
     }
 }
