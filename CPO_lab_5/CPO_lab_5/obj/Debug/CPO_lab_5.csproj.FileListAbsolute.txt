@@ -1,0 +1,8 @@
+C:\Users\boris\source\repos\letsgo\CPO_lab_5\CPO_lab_5\bin\Debug\CPO_lab_5.exe.config
+C:\Users\boris\source\repos\letsgo\CPO_lab_5\CPO_lab_5\bin\Debug\CPO_lab_5.exe
+C:\Users\boris\source\repos\letsgo\CPO_lab_5\CPO_lab_5\bin\Debug\CPO_lab_5.pdb
+C:\Users\boris\source\repos\letsgo\CPO_lab_5\CPO_lab_5\obj\Debug\CPO_lab_5.csproj.AssemblyReference.cache
+C:\Users\boris\source\repos\letsgo\CPO_lab_5\CPO_lab_5\obj\Debug\CPO_lab_5.csproj.SuggestedBindingRedirects.cache
+C:\Users\boris\source\repos\letsgo\CPO_lab_5\CPO_lab_5\obj\Debug\CPO_lab_5.csproj.CoreCompileInputs.cache
+C:\Users\boris\source\repos\letsgo\CPO_lab_5\CPO_lab_5\obj\Debug\CPO_lab_5.exe
+C:\Users\boris\source\repos\letsgo\CPO_lab_5\CPO_lab_5\obj\Debug\CPO_lab_5.pdb
