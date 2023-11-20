@@ -1,0 +1,8 @@
+C:\Users\boris\CodeProjects\CSharpCode\csharp_labs\CPO_lab_6\CPO_lab_6\obj\Debug\CPO_lab_6.csproj.AssemblyReference.cache
+C:\Users\boris\CodeProjects\CSharpCode\csharp_labs\CPO_lab_6\CPO_lab_6\obj\Debug\CPO_lab_6.csproj.SuggestedBindingRedirects.cache
+C:\Users\boris\CodeProjects\CSharpCode\csharp_labs\CPO_lab_6\CPO_lab_6\obj\Debug\CPO_lab_6.csproj.CoreCompileInputs.cache
+C:\Users\boris\CodeProjects\CSharpCode\csharp_labs\CPO_lab_6\CPO_lab_6\bin\Debug\CPO_lab_6.exe.config
+C:\Users\boris\CodeProjects\CSharpCode\csharp_labs\CPO_lab_6\CPO_lab_6\bin\Debug\CPO_lab_6.exe
+C:\Users\boris\CodeProjects\CSharpCode\csharp_labs\CPO_lab_6\CPO_lab_6\bin\Debug\CPO_lab_6.pdb
+C:\Users\boris\CodeProjects\CSharpCode\csharp_labs\CPO_lab_6\CPO_lab_6\obj\Debug\CPO_lab_6.exe
+C:\Users\boris\CodeProjects\CSharpCode\csharp_labs\CPO_lab_6\CPO_lab_6\obj\Debug\CPO_lab_6.pdb
