@@ -10,16 +10,17 @@ namespace CPO_lab_6
     {
         static void Main(string[] args)
         {
-            Stationery stationery = new Folder();
-            stationery.ReadFromConsole();
+            Stationery[] stationery = null;
+            StationeryService service = new StationeryService();
+            int size = 2;
+            string path = "folder.dat";
 
-            Console.WriteLine("\nДО:");
-            stationery.Print();
+            //stationery = service.InputAllData<Folder>(size);
+            //service.SaveToFile(stationery, path);
+            //Console.WriteLine("Saving to file successfully!");
 
-            Console.WriteLine("\nПОСЛЕ:");
-            stationery.Edit();
-            stationery.Print();
-
+            Stationery[] readStationeries = service.LoadFromFile<Folder>(path);
+            service.PrintData<Folder>(readStationeries);
             Console.ReadKey(true);
         }
     }

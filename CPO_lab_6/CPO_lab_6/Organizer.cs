@@ -60,6 +60,12 @@ namespace CPO_lab_6
             Console.WriteLine("---------------------------------------------------------------------------------------------------------------------");
         }
 
+        public override string TableHeader()
+        {
+            string format = $"| {{0,-20}} | {{1,-10}} | {{2,-18}} | {{3,-15}} | {{4,-15}} |";
+            return string.Format(format, "Фирма-производитель", "Цена", "Кол-во отделений", "Материал", "Размер");
+        }
+
         public override void ReadFromConsole()
         {
             base.ReadFromConsole();

@@ -45,11 +45,15 @@ namespace CPO_lab_6
 
         public virtual void Print()
         {
-            string format = $"| {{1,-20}} | {{2,-10}} |";
-            Console.WriteLine(format, "Фирма-производитель", "Цена");
             Console.WriteLine("---------------------------------------------------------------");
             Console.WriteLine(ToString());
             Console.WriteLine("---------------------------------------------------------------");
+        }
+
+        public virtual string TableHeader()
+        {
+            string format = $"| {{1,-20}} | {{2,-10}} |";
+            return string.Format(format, "Фирма-производитель", "Цена");
         }
 
         public virtual void ReadFromConsole()

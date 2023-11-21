@@ -50,12 +50,16 @@ namespace CPO_lab_6
         }
 
         public override void Print()
-        {
-            string format = $"| {{0,-20}} | {{1,-10}} | {{2,-15}} | {{3,-15}} | {{4,-15}} |";
-            Console.WriteLine(format, "Фирма-производитель", "Цена", "Твердость", "Цвет", "Вид");
+        {            
             Console.WriteLine("---------------------------------------------------------------------------------------------------------------------");
             Console.WriteLine(ToString());
             Console.WriteLine("---------------------------------------------------------------------------------------------------------------------");
+        }
+
+        public override string TableHeader()
+        {
+            string format = $"| {{0,-20}} | {{1,-10}} | {{2,-15}} | {{3,-15}} | {{4,-15}} |";
+            return string.Format(format, "Фирма-производитель", "Цена", "Твердость", "Цвет", "Вид");
         }
 
         public override void ReadFromConsole()
