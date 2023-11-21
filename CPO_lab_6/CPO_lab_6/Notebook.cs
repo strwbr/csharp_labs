@@ -28,6 +28,7 @@ namespace CPO_lab_6
 
         public override void WriteToFile(BinaryWriter writer)
         {
+            writer.Write('N');
             base.WriteToFile(writer);
             writer.Write(PagesNum);
             writer.Write(PaperType);
@@ -53,6 +54,7 @@ namespace CPO_lab_6
 
         public override void Print()
         {            
+            TableHeader();
             Console.WriteLine("---------------------------------------------------------------------------------------------------------------------");
             Console.WriteLine(ToString());
             Console.WriteLine("---------------------------------------------------------------------------------------------------------------------");

@@ -10,18 +10,33 @@ namespace CPO_lab_6
     {
         static void Main(string[] args)
         {
-            Stationery[] stationery = null;
+            const string PATH = "data.dat";
+            const int SIZE = 1;
+
             StationeryService service = new StationeryService();
-            int size = 2;
-            string path = "folder.dat";
 
-            //stationery = service.InputAllData<Folder>(size);
-            //service.SaveToFile(stationery, path);
-            //Console.WriteLine("Saving to file successfully!");
+            Console.WriteLine("--> Скоросшиватели:");
+            Stationery[] folders = service.InputAllData<Folder>(SIZE);
+            service.SaveToFile(folders, PATH);
 
-            Stationery[] readStationeries = service.LoadFromFile<Folder>(path);
-            service.PrintData<Folder>(readStationeries);
+            Console.WriteLine("\n--> Органайзеры:");
+            Stationery[] organizers = service.InputAllData<Organizer>(SIZE);
+            service.SaveToFile(organizers, PATH);
+
+            Console.WriteLine("\n--> Карандаши:");
+            Stationery[] pencils = service.InputAllData<Pencil>(SIZE);
+            service.SaveToFile(pencils, PATH);
+
+            Console.WriteLine("\n--> Тетради:");
+            Stationery[] noteboks = service.InputAllData<Notebook>(SIZE);
+            service.SaveToFile(noteboks, PATH);
+
+            Stationery[] readData = service.LoadFromFile(PATH);
+            service.PrintData(readData);
+
             Console.ReadKey(true);
         }
+
+
     }
 }

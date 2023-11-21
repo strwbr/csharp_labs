@@ -30,6 +30,7 @@ namespace CPO_lab_6
 
         public override void WriteToFile(BinaryWriter writer)
         {
+            writer.Write('O');
             base.WriteToFile(writer);
             writer.Write(BranchesNum);
             writer.Write(Material);
@@ -53,8 +54,7 @@ namespace CPO_lab_6
 
         public override void Print()
         {
-            string format = $"| {{0,-20}} | {{1,-10}} | {{2,-18}} | {{3,-15}} | {{4,-15}} |";
-            Console.WriteLine(format, "Фирма-производитель", "Цена", "Кол-во отделений", "Материал", "Размер");
+            TableHeader();
             Console.WriteLine("---------------------------------------------------------------------------------------------------------------------");
             Console.WriteLine(ToString());
             Console.WriteLine("---------------------------------------------------------------------------------------------------------------------");

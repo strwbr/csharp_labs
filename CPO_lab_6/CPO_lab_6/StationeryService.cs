@@ -22,7 +22,7 @@ namespace CPO_lab_6
         }
 
         // Загрузка массива данных из файла с путем path
-        public Stationery[] LoadFromFile<T>(string path) where T : Stationery, new()
+        public Stationery[] LoadFromFile(string path)
         {
             // Проверка файла на пустоту
             if (IsFileEmpty(path))
@@ -33,7 +33,9 @@ namespace CPO_lab_6
             // Пока не конец файла
             while (reader.PeekChar() > -1)
             {
-                Stationery temp = new T();
+                char label = reader.ReadChar();
+                Stationery temp = GetStationeryInstance(label);
+                //Stationery temp = new T();
                 if (temp.ReadFromFile(reader))
                     list.Add(temp);
             }
@@ -41,15 +43,31 @@ namespace CPO_lab_6
             return list.ToArray();
         }
 
-        // Вывод массива данных в виде таблицы
-        public void PrintData<T>(Stationery[] stationeries) where T : Stationery, new()
+        public Stationery GetStationeryInstance(char label)
         {
-            string format = "| {0,-5} ";
-            Console.WriteLine(string.Format(format, "№") + stationeries[0].TableHeader());
-            Console.WriteLine("---------------------------------------------------------------------------------------------------------------------");
+            switch (label)
+            {
+                case 'F': return new Folder();
+                case 'O': return new Organizer();
+                case 'P': return new Pencil();
+                case 'N': return new Notebook();
+            }
+            return null;
+        }
+
+        // Вывод массива данных в виде таблицы
+        public void PrintData(Stationery[] stationeries)
+        {
+            string format = $"| {{0,-5}} ";
+            //Console.WriteLine(string.Format(format, "№") + stationeries[0].TableHeader());
+            //Console.WriteLine("---------------------------------------------------------------------------------------------------------------------");
 
             for (int i = 0; i < stationeries.Length; i++)
             {
+                Console.WriteLine();
+                
+                Console.WriteLine(string.Format(format, "№") + stationeries[i].TableHeader());
+                Console.WriteLine("---------------------------------------------------------------------------------------------------------------------");
                 Console.Write(format, i + 1);
                 Console.WriteLine(stationeries[i].ToString());
                 Console.WriteLine("---------------------------------------------------------------------------------------------------------------------");
@@ -61,12 +79,24 @@ namespace CPO_lab_6
             Stationery[] stationeries = new Stationery[size];
             for (int i = 0; i < stationeries.Length; i++)
             {
-                Console.WriteLine($"Товар {i + 1}");
+                Console.WriteLine($"\nТовар {i + 1}");
                 stationeries[i] = new T();
                 stationeries[i].ReadFromConsole();
             }
             return stationeries;
         }
+
+        // Поиск по полю Фирма-производитель
+        public Stationery[] SearchByCompany(Stationery[] data, string query) => Array.FindAll(data, elem => elem.Company.ToLower() == query);
+
+        // Поиск по полю Цена товара
+        public Stationery[] SearchByPrice(Stationery[] data, float query) => Array.FindAll(data, elem => elem.Price == query);
+
+        // Сортировка по полю Фирма-производитель
+        public Stationery[] SortByCompany(Stationery[] data) => data.OrderBy(x => x.Company).ToArray();
+
+        // Сортировка по полю Цена товара
+        public Stationery[] SortByPrice(Stationery[] data) => data.OrderBy(x => x.Price).ToArray();
 
         private bool IsFileEmpty(string path)
         {

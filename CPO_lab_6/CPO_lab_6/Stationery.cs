@@ -45,6 +45,7 @@ namespace CPO_lab_6
 
         public virtual void Print()
         {
+            TableHeader();
             Console.WriteLine("---------------------------------------------------------------");
             Console.WriteLine(ToString());
             Console.WriteLine("---------------------------------------------------------------");

@@ -28,6 +28,7 @@ namespace CPO_lab_6
 
         public override void WriteToFile(BinaryWriter writer)
         {
+            writer.Write('P');
             base.WriteToFile(writer);
             writer.Write(Hardness);
             writer.Write(Color);
@@ -51,6 +52,7 @@ namespace CPO_lab_6
 
         public override void Print()
         {            
+            TableHeader();
             Console.WriteLine("---------------------------------------------------------------------------------------------------------------------");
             Console.WriteLine(ToString());
             Console.WriteLine("---------------------------------------------------------------------------------------------------------------------");
