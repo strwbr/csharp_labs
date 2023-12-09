@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.SqlServer.Server;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -171,6 +173,109 @@ namespace CPO_lab_7
                 current = current.Next;
                 number++;
             } while (current != Head);
+            return true;
+        }
+
+        public void SortByCompany()
+        {
+            // Список пуст или содержит только один элемент
+            if (Head == null || Head.Next == null)
+            {
+                return; 
+            }
+
+            StationeryNode current = Head;
+            do
+            {
+                StationeryNode next = current.Next;
+                do
+                {
+                    if (string.Compare(current.Data.Company, next.Data.Company) < 0)
+                    {
+                        (next.Data, current.Data) = (current.Data, next.Data);
+                    }
+                    next = next.Next;
+                } while (next != Head);
+                current = current.Next;
+            } while (current != Head);
+        }
+
+        public void SortByPrice()
+        {
+            // Список пуст или содержит только один элемент
+            if (Head == null || Head.Next == null)
+            {
+                return;
+            }
+
+            StationeryNode current = Head;
+            do
+            {
+                StationeryNode next = current.Next;
+                do
+                {
+                    if (current.Data.Price < next.Data.Price)
+                    {
+                        (next.Data, current.Data) = (current.Data, next.Data);
+                    }
+                    next = next.Next;
+                } while (next != Head);
+                current = current.Next;
+            } while (current != Head);
+        }
+
+        // Чтение данных из файла
+        private bool IsFileEmpty(string path)
+        {
+            var fileInfo = new FileInfo(path);
+            return fileInfo.Length == 0;
+        }
+
+        public Stationery GetStationeryInstance(char label)
+        {
+            switch (label)
+            {
+                case 'F': return new Folder();
+                case 'O': return new Organizer();
+                case 'P': return new Pencil();
+                case 'N': return new Notebook();
+            }
+            return null;
+        }
+
+        public bool LoadFromFile(string path)
+        {
+            // Очистка списка
+            Head = null;
+            if (IsFileEmpty(path))
+                return false;
+            BinaryReader reader = new BinaryReader(File.Open(path, FileMode.OpenOrCreate));
+            while (reader.PeekChar() > -1)
+            {
+                char label = reader.ReadChar();
+                Stationery temp = GetStationeryInstance(label);
+                if (temp.ReadFromFile(reader))
+                    Add(temp);
+            }
+            reader.Close();
+            return true;
+        }
+
+        public bool SaveToFile(string path)
+        {
+            if (Head == null)
+            {
+                return false;
+            }
+            BinaryWriter writer = new BinaryWriter(File.Open(path, FileMode.Append));
+            StationeryNode current = Head;
+            do
+            {
+                current.Data.WriteToFile(writer);
+                current = current.Next;
+            } while (current != Head);
+            writer.Close();
+
             return true;
         }
     }
