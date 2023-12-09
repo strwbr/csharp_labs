@@ -22,17 +22,6 @@ namespace CPO_lab_7
             CoverColor = coverColor;
         }
 
-        //костыли - объяснение в Pencil
-        public string GetCompany()
-        {
-            return Company;
-        }
-
-        public float GetPrice()
-        {
-            return Price;
-        }
-
         public override void WriteToFile(BinaryWriter writer)
         {
             writer.Write('F');

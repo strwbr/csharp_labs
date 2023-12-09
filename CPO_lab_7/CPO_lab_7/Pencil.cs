@@ -21,24 +21,6 @@ namespace CPO_lab_7
             Kind = kind;
         }
 
-        //это можно как-то починить? 
-        //откуда и зачем: в узлах лежат Stationery
-        //из них вытащить свойство нельзя, валит ошибка
-        //из рефлексии (в Карандаше нет компании), не видно поле компания
-        //из рефлексии Карандаш -> Родительский класс тоже не видно поле
-        //я не ебу почему, это загадка
-        //гении си шарпа кусали локти решая этот вопрос
-        //гет сет в Stationery правильные, но видимо нет объекта - нет данных
-        public string GetCompany()
-        {
-            return Company;
-        }
-
-        public float GetPrice()
-        {
-            return Price;
-        }
-
         public override void WriteToFile(BinaryWriter writer)
         {
             writer.Write('P');
