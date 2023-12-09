@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace CPO_lab_7
 {
-    internal class StationeryNode
+    internal class Node<T> where T : Stationery
     {
         public Stationery Data { get; set; }
-        public StationeryNode Next { get; set; }
-        public StationeryNode Previous { get; set; }
+        public Node<T> Next { get; set; }
+        public Node<T> Previous { get; set; }
 
-        public StationeryNode(Stationery stationery)
+        public Node(Stationery stationery)
         {
             Data = stationery;
             Next = null;
