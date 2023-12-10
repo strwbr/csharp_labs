@@ -11,7 +11,7 @@ namespace CPO_lab_7
 {
     internal class List
     {
-        private Node<Stationery> Head { get; set; }
+        private Node Head { get; set; }
         
         public List()
         {
@@ -20,7 +20,7 @@ namespace CPO_lab_7
 
         public void Add(Stationery stationery)
         {
-            Node<Stationery> newNode = new Node<Stationery>(stationery);
+            Node newNode = new Node(stationery);
             if (Head == null)
             {
                 Head = newNode;
@@ -29,7 +29,7 @@ namespace CPO_lab_7
             }
             else
             {
-                Node<Stationery> tailNode = Head.Previous;
+                Node tailNode = Head.Previous;
                 newNode.Next = Head;
                 newNode.Previous = tailNode;
                 tailNode.Next = newNode;
@@ -44,7 +44,7 @@ namespace CPO_lab_7
                 return false;
             }
 
-            Node<Stationery> current = Head;
+            Node current = Head;
             for (int i = 0; i < index; i++)
             {
                 current = current.Next;
@@ -72,7 +72,7 @@ namespace CPO_lab_7
                 return false;
             }
 
-            Node<Stationery> current = Head;
+            Node current = Head;
             for (int i = 0; i < index; i++)
             {
                 current = current.Next;
@@ -93,7 +93,7 @@ namespace CPO_lab_7
                 return false;
             }
 
-            Node<Stationery> current = Head;
+            Node current = Head;
             string format = $"| {{0,-5}} ";
             int number = 1;
             do
@@ -121,7 +121,7 @@ namespace CPO_lab_7
                 return false;
             }
 
-            Node<Stationery> current = Head;
+            Node current = Head;
             string format = $"| {{0,-5}} ";
             int number = 1;
             do
@@ -154,7 +154,7 @@ namespace CPO_lab_7
                 return false;
             }
 
-            Node<Stationery> current = Head;
+            Node current = Head;
             string format = $"| {{0,-5}} ";
             int number = 1;
             do
@@ -184,10 +184,10 @@ namespace CPO_lab_7
                 return; 
             }
 
-            Node<Stationery> current = Head;
+            Node current = Head;
             do
             {
-                Node<Stationery> next = current.Next;
+                Node next = current.Next;
                 do
                 {
                     if (string.Compare(current.Data.Company, next.Data.Company) < 0)
@@ -208,10 +208,10 @@ namespace CPO_lab_7
                 return;
             }
 
-            Node<Stationery> current = Head;
+            Node current = Head;
             do
             {
-                Node<Stationery> next = current.Next;
+                Node next = current.Next;
                 do
                 {
                     if (current.Data.Price < next.Data.Price)
@@ -268,7 +268,7 @@ namespace CPO_lab_7
                 return false;
             }
             BinaryWriter writer = new BinaryWriter(File.Open(path, FileMode.Append));
-            Node<Stationery> current = Head;
+            Node current = Head;
             do
             {
                 current.Data.WriteToFile(writer);

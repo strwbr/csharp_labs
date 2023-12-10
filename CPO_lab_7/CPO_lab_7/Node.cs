@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace CPO_lab_7
 {
-    internal class Node<T> where T : Stationery
+    internal class Node
     {
         public Stationery Data { get; set; }
-        public Node<T> Next { get; set; }
-        public Node<T> Previous { get; set; }
+        public Node Next { get; set; }
+        public Node Previous { get; set; }
 
         public Node(Stationery stationery)
         {
