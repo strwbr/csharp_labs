@@ -57,7 +57,7 @@ namespace CPO_lab_7
             current.Previous.Next = current.Next;
             current.Next.Previous = current.Previous;
 
-            // Если удалялась голова
+            // Если удаляллся головной узел
             if (current == Head)
             {
                 Head = current.Next;
@@ -81,8 +81,12 @@ namespace CPO_lab_7
                     return false;
                 }
             }
-
+            Console.WriteLine("Товар №" + (index + 1));
+            current.Data.Print();
+            Console.WriteLine("\nВведите новое значение поля, если хотите его отредактировать\nИначе введите '-'");
             current.Data.Edit();
+            Console.WriteLine("\nОтредактированная запись");
+            current.Data.Print();
             return true;
         }
 
@@ -115,7 +119,6 @@ namespace CPO_lab_7
 
         public bool SearchByCompany(string query)
         {
-            // раньше просто чепятал список, не сохранял нигде
             if (Head == null)
             {
                 return false;
@@ -126,9 +129,6 @@ namespace CPO_lab_7
             int number = 1;
             do
             {
-                //я не понимаю какого хрена творится
-                //current.Data.Company это ошибка, нет поля
-
                 if (current.Data.Company.ToLower() == query.ToLower())
                 {
                     Console.WriteLine();
@@ -148,7 +148,6 @@ namespace CPO_lab_7
 
         public bool SearchByPrice(float query)
         {
-            // раньше просто чепятал список, не сохранял нигде
             if (Head == null)
             {
                 return false;
@@ -181,7 +180,7 @@ namespace CPO_lab_7
             // Список пуст или содержит только один элемент
             if (Head == null || Head.Next == null)
             {
-                return; 
+                return;
             }
 
             Node current = Head;
@@ -190,14 +189,14 @@ namespace CPO_lab_7
                 Node next = current.Next;
                 do
                 {
-                    if (string.Compare(current.Data.Company, next.Data.Company) < 0)
+                    if (string.Compare(current.Data.Company, next.Data.Company) > 0)
                     {
                         (next.Data, current.Data) = (current.Data, next.Data);
                     }
                     next = next.Next;
                 } while (next != Head);
                 current = current.Next;
-            } while (current != Head);
+            } while (current != Head && current.Next != Head);
         }
 
         public void SortByPrice()
@@ -214,14 +213,14 @@ namespace CPO_lab_7
                 Node next = current.Next;
                 do
                 {
-                    if (current.Data.Price < next.Data.Price)
+                    if (current.Data.Price > next.Data.Price)
                     {
                         (next.Data, current.Data) = (current.Data, next.Data);
                     }
                     next = next.Next;
                 } while (next != Head);
                 current = current.Next;
-            } while (current != Head);
+            } while (current != Head && current.Next != Head);
         }
 
         // Чтение данных из файла
@@ -277,6 +276,18 @@ namespace CPO_lab_7
             writer.Close();
 
             return true;
+        }
+
+        // Ввод с консоли
+        public void InputAllData<T>(int size) where T : Stationery, new()
+        {
+            for (int i = 0; i < size; i++)
+            {
+                Console.WriteLine($"\nТовар {i + 1}");
+                T temp = new T();
+                temp.ReadFromConsole();
+                Add(temp);
+            }
         }
     }
 }
